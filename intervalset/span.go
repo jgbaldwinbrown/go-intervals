@@ -8,6 +8,10 @@ type Span struct {
 	Min, Max int
 }
 
+func MakeZeroSpan() Interval {
+	return Zero()
+}
+
 // Cast returns a *Span from an Interval interface, or it panics.
 func Cast(i Interval) *Span {
 	x, ok := i.(*Span)

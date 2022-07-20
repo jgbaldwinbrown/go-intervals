@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/google/go-intervals/timespanset"
+	"github.com/jgbaldwinbrown/go-intervals/timespanset"
 )
 
 func Example() {

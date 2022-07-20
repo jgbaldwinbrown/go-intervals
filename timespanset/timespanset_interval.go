@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/google/go-intervals/intervalset"
+	"github.com/jgbaldwinbrown/go-intervals/intervalset"
 )
 
 func min(a, b time.Time) time.Time {

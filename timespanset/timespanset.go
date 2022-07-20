@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/google/go-intervals/intervalset"
+	"github.com/jgbaldwinbrown/go-intervals/intervalset"
 )
 
 // Set is a finite set of time spans. Functions are provided for iterating over the

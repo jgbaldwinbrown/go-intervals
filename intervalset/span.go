@@ -40,6 +40,10 @@ func Max(a, b int) int {
 	return b
 }
 
+func (s *Span) MakeZero() Interval {
+	return MakeZeroSpan()
+}
+
 func (s *Span) String() string {
 	return fmt.Sprintf("[%d, %d)", s.Min, s.Max)
 }

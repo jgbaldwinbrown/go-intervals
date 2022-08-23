@@ -5,15 +5,6 @@ import (
 	"fmt"
 )
 
-// func TestValToSet(t *testing.T) {
-// 	spans := []Span{
-// 		Span{5,8},
-// 		Span{7,10},
-// 		Span{22, 33},
-// 	}
-// 	fmt.Println(ToNewSet(spans))
-// }
-
 func TestToSet(t *testing.T) {
 	spans := []Span{
 		Span{5,8},
@@ -24,17 +15,7 @@ func TestToSet(t *testing.T) {
 	for i, _ := range spans {
 		spanptrs[i] = &spans[i]
 	}
-	set := ToSetV1(spanptrs, MakeZeroSpan)
-	fmt.Println(set)
-}
-
-func TestToSetPtrs(t *testing.T) {
-	spans := []Span{
-		Span{5,8},
-		Span{7,10},
-		Span{22, 33},
-	}
-	set := ToPtrSet(spans)
+	set := ImmSet(spanptrs)
 	fmt.Println(set)
 }
 
@@ -44,6 +25,6 @@ func TestToSetVal(t *testing.T) {
 		Vspan{7,10},
 		Vspan{22, 33},
 	}
-	set := ToSet(vspans)
+	set := ImmSet(vspans)
 	fmt.Println(set)
 }

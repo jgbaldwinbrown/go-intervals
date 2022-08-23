@@ -5,22 +5,20 @@ type Zinterval interface {
 	MakeZero() Interval
 }
 
-type InterSlice[T Zinterval] struct {
-	Slice []T
-}
-
-func (s *InterSlice[T]) ImmutableSet() *ImmutableSet {
+func ImmSet[T Zinterval](vals []T) *ImmutableSet {
 	zf := func() Interval {
 		var t T
 		return t.MakeZero()
 	}
-	return ToSetV1(s.Slice, zf).ImmutableSet()
+	return ToSetV1(vals, zf).ImmutableSet()
 }
 
-func (s *InterSlice[T]) FromImmSet(set *ImmutableSet) {
+func ToZslice[T Zinterval](set *ImmutableSet) []T {
+	var out []T
 	f := func(i Interval) bool {
-		s.Slice = append(s.Slice, i.(T))
+		out = append(out, i.(T))
 		return true
 	}
 	set.Intervals(f)
+	return out
 }

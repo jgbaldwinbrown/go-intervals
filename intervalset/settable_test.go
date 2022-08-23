@@ -5,15 +5,6 @@ import (
 	"fmt"
 )
 
-// func TestValToSet(t *testing.T) {
-// 	spans := []Span{
-// 		Span{5,8},
-// 		Span{7,10},
-// 		Span{22, 33},
-// 	}
-// 	fmt.Println(ToNewSet(spans))
-// }
-
 func TestSettable(t *testing.T) {
 	vspans1 := []Vspan{
 		Vspan{5,8},

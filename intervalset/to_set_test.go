@@ -19,6 +19,16 @@ func TestToSet(t *testing.T) {
 	fmt.Println(set)
 }
 
+func TestToSetPtr(t *testing.T) {
+	spans := []*Span{
+		&Span{5,8},
+		&Span{7,10},
+		&Span{22, 33},
+	}
+	set := ImmSet(spans)
+	fmt.Println(set)
+}
+
 func TestToSetVal(t *testing.T) {
 	vspans := []Vspan{
 		Vspan{5,8},

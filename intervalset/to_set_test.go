@@ -37,3 +37,13 @@ func TestToSetPtrs(t *testing.T) {
 	set := ToPtrSet(spans)
 	fmt.Println(set)
 }
+
+func TestToSetVal(t *testing.T) {
+	vspans := []Vspan{
+		Vspan{5,8},
+		Vspan{7,10},
+		Vspan{22, 33},
+	}
+	set := ToSet(vspans)
+	fmt.Println(set)
+}

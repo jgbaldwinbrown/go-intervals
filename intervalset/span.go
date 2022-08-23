@@ -23,7 +23,7 @@ func Cast(i Interval) *Span {
 
 // Zero returns the Zero value for Span.
 func Zero() *Span {
-	return &Span{}
+	return nil
 }
 
 func Min(a, b int) int {
@@ -40,21 +40,26 @@ func Max(a, b int) int {
 	return b
 }
 
-func (s *Span) MakeZero() Interval {
-	return MakeZeroSpan()
-}
-
 func (s *Span) String() string {
+	if s == nil {
+		return fmt.Sprintf("[)")
+	}
 	return fmt.Sprintf("[%d, %d)", s.Min, s.Max)
 }
 
 func (s *Span) Equal(t *Span) bool {
+	if s == nil {
+		return t.IsZero()
+	}
 	return s.Min == t.Min && s.Max == t.Max
 }
 
 // Intersect returns the intersection of an interval with another
 // interval. The function may panic if the other interval is incompatible.
 func (s *Span) Intersect(tInt Interval) Interval {
+	if s == nil {
+		return Zero()
+	}
 	t := Cast(tInt)
 	result := &Span{
 		Max(s.Min, t.Min),
@@ -68,13 +73,16 @@ func (s *Span) Intersect(tInt Interval) Interval {
 
 // Before returns true if the interval is completely before another interval.
 func (s *Span) Before(tInt Interval) bool {
+	if s == nil {
+		return true
+	}
 	t := Cast(tInt)
 	return s.Max <= t.Min
 }
 
 // IsZero returns true for the Zero value of an interval.
 func (s *Span) IsZero() bool {
-	return s.Min == 0 && s.Max == 0
+	return s == nil
 }
 
 // Bisect returns two intervals, one on either lower side of x and one on the
@@ -102,6 +110,9 @@ func (s *Span) Bisect(tInt Interval) (Interval, Interval) {
 // Adjoin returns the union of two intervals, if the intervals are exactly
 // adjacent, or the Zero interval if they are not.
 func (s *Span) Adjoin(tInt Interval) Interval {
+	if s == nil {
+		return Zero()
+	}
 	t := Cast(tInt)
 	if s.Max == t.Min {
 		return &Span{s.Min, t.Max}
@@ -115,6 +126,9 @@ func (s *Span) Adjoin(tInt Interval) Interval {
 // Encompass returns an interval that covers the exact extents of two
 // intervals.
 func (s *Span) Encompass(tInt Interval) Interval {
+	if s == nil {
+		return tInt
+	}
 	t := Cast(tInt)
 	return &Span{Min(s.Min, t.Min), Max(s.Max, t.Max)}
 }

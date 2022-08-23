@@ -8,10 +8,6 @@ type Vspan struct {
 	Min, Max int
 }
 
-func MakeZeroVspan() Interval {
-	return Vzero()
-}
-
 // Cast returns a Vspan from an Interval interface, or it panics.
 func Vcast(i Interval) Vspan {
 	x, ok := i.(Vspan)
@@ -24,10 +20,6 @@ func Vcast(i Interval) Vspan {
 // Zero returns the Zero value for Vspan.
 func Vzero() Vspan {
 	return Vspan{}
-}
-
-func (s Vspan) MakeZero() Interval {
-	return MakeZeroVspan()
 }
 
 func (s Vspan) String() string {

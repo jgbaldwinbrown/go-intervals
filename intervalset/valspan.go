@@ -26,6 +26,10 @@ func Vzero() Vspan {
 	return Vspan{}
 }
 
+func (s Vspan) MakeZero() Interval {
+	return MakeZeroVspan()
+}
+
 func (s Vspan) String() string {
 	return fmt.Sprintf("[%d, %d)", s.Min, s.Max)
 }

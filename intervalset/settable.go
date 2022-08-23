@@ -15,7 +15,7 @@ func Intersect[T Interval](v1, v2 []T) []T {
 	s2 := ImmSet(v2)
 	sout := s1.Intersect(s2)
 
-	return ToZslice[T](sout)
+	return Slice[T](sout)
 }
 
 func Intervals[T Interval](vals []T, f IntervalReceiver) {
@@ -33,7 +33,7 @@ func Sub[T Interval](v1, v2 []T) []T {
 	s2 := ImmSet(v2)
 	sout := s1.Sub(s2)
 
-	return ToZslice[T](sout)
+	return Slice[T](sout)
 }
 
 func Union[T Interval](v1, v2 []T) []T {
@@ -41,5 +41,5 @@ func Union[T Interval](v1, v2 []T) []T {
 	s2 := ImmSet(v2)
 	sout := s1.Union(s2)
 
-	return ToZslice[T](sout)
+	return Slice[T](sout)
 }

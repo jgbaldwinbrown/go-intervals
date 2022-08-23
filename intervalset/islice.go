@@ -22,7 +22,7 @@ func ImmSet[T Interval](vals []T) *ImmutableSet {
 	return set.ImmutableSet()
 }
 
-func ToZslice[T Interval](set *ImmutableSet) []T {
+func Slice[T Interval](set *ImmutableSet) []T {
 	var out []T
 	f := func(i Interval) bool {
 		out = append(out, i.(T))

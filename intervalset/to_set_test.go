@@ -24,7 +24,7 @@ func TestToSet(t *testing.T) {
 	for i, _ := range spans {
 		spanptrs[i] = &spans[i]
 	}
-	set := ToNewSet(spanptrs, MakeZeroSpan)
+	set := ToSetV1(spanptrs, MakeZeroSpan)
 	fmt.Println(set)
 }
 
@@ -34,7 +34,6 @@ func TestToSetPtrs(t *testing.T) {
 		Span{7,10},
 		Span{22, 33},
 	}
-	spanptrs := ToPtrInterval(spans)
-	set := ToNewSet(spanptrs, MakeZeroSpan)
+	set := ToPtrSet(spans)
 	fmt.Println(set)
 }

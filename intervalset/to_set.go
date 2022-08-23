@@ -28,11 +28,33 @@ func ToPtrInterval[T any](concretes []T) []Interval {
 	return inters
 }
 
-func ToNewSet[T Interval](concretes []T, f func() Interval) *Set {
+func ToSetV1[T Interval](concretes []T, f func() Interval) *Set {
 	set := NewSetV1([]Interval{}, f)
 	inters := ToInterval(concretes)
 	for _, inter := range inters {
 		set.Add(setInput{inter})
 	}
 	return set
+}
+
+func ToPtrSetV1[T any](concretes []T, f func() Interval) *Set {
+	set := NewSetV1([]Interval{}, f)
+	inters := ToPtrInterval(concretes)
+	for _, inter := range inters {
+		set.Add(setInput{inter})
+	}
+	return set
+}
+
+func ToSet[T Interval](concretes []T) *Set {
+	f := func() Interval { var t T; return t }
+	return ToSetV1(concretes, f)
+}
+
+func ToPtrSet[T any](concretes []T) *Set {
+	f := func() Interval {
+		t := new(T)
+		return any(t).(Interval)
+	}
+	return ToPtrSetV1(concretes, f)
 }

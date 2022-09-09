@@ -10,7 +10,7 @@ func (s setInput) IntervalsBetween(extent Interval, f IntervalReceiver) {
 	f(s.I.Intersect(extent))
 }
 
-func ImmSet[T Interval](vals []T) *ImmutableSet {
+func ToSet[T Interval](vals []T) *Set {
 	zf := func() Interval {
 		var t T
 		return t
@@ -19,6 +19,11 @@ func ImmSet[T Interval](vals []T) *ImmutableSet {
 	for _, val := range vals {
 		set.Add(setInput{Interval(val)})
 	}
+	return set
+}
+
+func ImmSet[T Interval](vals []T) *ImmutableSet {
+	set := ToSet(vals)
 	return set.ImmutableSet()
 }
 
